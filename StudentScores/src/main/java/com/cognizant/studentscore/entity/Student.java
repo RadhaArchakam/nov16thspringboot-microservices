@@ -1,6 +1,5 @@
 package com.cognizant.studentscore.entity;
 
-
 public class Student {
 	
 	private int id;
