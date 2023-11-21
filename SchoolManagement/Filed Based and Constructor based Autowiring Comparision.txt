@@ -1,0 +1,84 @@
+@Autowired Annotation and Constructor Based Autowiring&Field Based Autowiring:
+******************************************************************************
+
+@Autowired annotation is used to inject the bean automatically.
+@Autowired annotation is used in Constructor Injection,Setter Injection and Field Injection.
+
+
+Constructor Based Autowiring:
+*****************************
+If we use @Autowired Annotation at Constructor Level then this is called constructor based autowiring.
+
+Syntax for Constructor based Autowiring
+-----------------------------------------
+@Component
+public class PizzaController{
+
+private Pizza pizza;
+
+@Autowired
+public PizzaController(Pizza pizza)
+{
+this.pizza=pizza;
+}
+
+Use Constructor Based DI for mandatory dependencies so that your bean is ready to use when it is first time called.
+Use Setter Based DI for optional dependencies.
+Spring Team is recommended to use Constructor Based Dependency Injection
+Here are the advantages of using constructor based injection
+--------------------------------------------------------------
+1.In constructor based injection all the dependencies are initialized while creating spring bean of Demo class:
+************
+while in Setter based injection we need to create setter based for each of the dependency injection,It increases the number of lines of code.In constructor injection we can inject all these dependencies in single method.
+
+Public class Demo{
+private DependencyA dependencyA;
+private DependencyB dependencyB;
+private DependencyC dependencyC;
+
+public Demo(DependencyA dependencyA,DependencyB dependencyB,DependencyC dependencyC){
+this.dependencyA=dependencyA;
+this.dependencyB=dependencyB;
+this.dependencyC=dependencyC;
+}
+
+public void setDependencyA(DependencyA dependencyA){
+this.dependencyA=dependencyA)
+
+public void setDependencyB(DependencyB dependencyB){
+this.dependencyB=dependencyB)
+
+public void setDependencyC(DependencyC dependencyC){
+this.dependencyC=dependencyC)
+
+2.Immutablibity and avoid Nullpointer Exception
+**************************************************
+These dependencies are immutable if we make these dependencies with final.
+Public Class Demo{
+private final DependencyA dependencyA;
+private final DependencyB dependencyB;
+private final DependencyC dependencyC;
+
+If we use constructor based injection we can make these objects are immutable ,If we use setter based injection/Fieldbased Injection we can't able to make these dependencies immutable.we will get compilation error in setter based injection.
+
+We can avoid the Null Checks if we use constructor injection.In case of constructor injection all the depencies are initialized at the initialization time so these dependencies can't be null.
+
+3.Preventing Errors in TestCases:
+***********************************
+The Constructor forced us to provide the valid dependencies,Using Mocking Library like Mockito we can pass objects,we can also pass mocking objects using setter injection,If we forget to call setter method in the mockito potentially cause null pointer exception.ie Constructor Injection is recommended to do UnitTestCases to inject the dependencies. 
+
+Field Based Autowiring:
+**********************
+If we use @Autowired Annotation on Field Level then it is called Field based autowiring
+Syntax for Field Based Autowiring:
+-------------------------------
+@Component
+public class PizzaController{
+@Autowired
+private Pizza pizza;
+
+public PizzaController(Pizza pizza)
+{
+this.pizza=pizza;
+}
+
