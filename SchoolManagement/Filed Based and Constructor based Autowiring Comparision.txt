@@ -1,9 +1,7 @@
 @Autowired Annotation and Constructor Based Autowiring&Field Based Autowiring:
 ******************************************************************************
-
 @Autowired annotation is used to inject the bean automatically.
 @Autowired annotation is used in Constructor Injection,Setter Injection and Field Injection.
-
 
 Constructor Based Autowiring:
 *****************************
